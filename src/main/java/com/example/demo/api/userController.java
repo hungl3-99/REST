@@ -19,7 +19,7 @@ import com.example.demo.repository.UserRepository;
 
 
 @RestController
-@RequestMapping(path = "/api/user")
+@RequestMapping(path = "/user")
 @CrossOrigin(origins = "*")
 public class userController {
 	@Autowired
@@ -28,8 +28,10 @@ public class userController {
 	
 	@PostMapping(path = "/login" , consumes = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
-	public User postLogin(@RequestParam(value = "params") String params) {
+	public User postLogin(@RequestBody String params) {
 		User user = new User();
+		user.setEmail(params);
+		user.setPassword("sdjfnm");
 		System.out.println(params);
 		return userRepo.save(user);
 	}
