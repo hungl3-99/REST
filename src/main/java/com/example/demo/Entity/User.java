@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import antlr.Token;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ public class User {
 	
 	private String password;
 	
+	private String Token ;
 	
     @OneToOne(targetEntity = Profile.class)
     private Profile profile ;
