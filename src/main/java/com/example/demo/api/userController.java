@@ -26,17 +26,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/user", consumes = "application/json")
 @CrossOrigin(origins = "*")
 public class userController {
 	@Autowired
-	private UserRepository userRepo;
 	EntityLinks entityLinks;
 	
-	
-	
-	
-	@PostMapping(path = "/login" , consumes = "application/json")
+	private UserRepository userRepo;
+	public userController(UserRepository userRepo) {
+		super();
+		this.userRepo = userRepo;
+	}
+
+
+	/*@PostMapping(path = "/login" )
 	@ResponseStatus(HttpStatus.CREATED)
 	public User postLogin(@RequestBody String params) throws JsonMappingException, JsonProcessingException {
 		User user = new User();
@@ -62,5 +65,14 @@ public class userController {
 		user.setToken(output);
 		System.out.println(output);
 		return userRepo.save(user);
+	}*/
+	
+	
+	@GetMapping("/getall")
+	public Iterable<User> getAllUsers(){
+		return userRepo.findAll();
+		
 	}
+	
+	
 }
